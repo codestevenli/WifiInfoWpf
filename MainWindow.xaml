@@ -1,0 +1,250 @@
+<Window x:Class="WifiInfoWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="网络工具箱" Height="650" Width="420"
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F5F5">
+    <Grid Margin="15">
+        <Border Background="White" CornerRadius="12">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="20" Opacity="0.1"/>
+            </Border.Effect>
+            <TabControl Background="Transparent" BorderThickness="0" Padding="10">
+                <TabControl.Resources>
+                    <Style TargetType="TabPanel">
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                    </Style>
+                </TabControl.Resources>
+                
+                <!-- WiFi Tab -->
+                <TabItem Header="📶 WiFi">
+                    <ScrollViewer Margin="15">
+                        <StackPanel>
+                            <TextBlock Text="无线网络" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15" Foreground="#333"/>
+                            
+                            <Border Background="#F8F9FA" CornerRadius="10" Padding="15" Margin="0,0,0,10">
+                                <StackPanel>
+                                    <TextBlock Text="WiFi 名称" FontSize="11" Foreground="#888"/>
+                                    <TextBlock x:Name="SsidText" Text="--" FontSize="18" FontWeight="Bold" Foreground="#0078D4"/>
+                                </StackPanel>
+                            </Border>
+                            
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border Background="#F8F9FA" CornerRadius="10" Padding="12" Margin="0,0,5,10">
+                                    <StackPanel>
+                                        <TextBlock Text="BSSID" FontSize="11" Foreground="#888"/>
+                                        <TextBlock x:Name="BssidText" Text="--" FontSize="13" Foreground="#333"/>
+                                    </StackPanel>
+                                </Border>
+                                <Border Grid.Column="1" Background="#F8F9FA" CornerRadius="10" Padding="12" Margin="5,0,0,10">
+                                    <StackPanel>
+                                        <TextBlock Text="IP地址" FontSize="11" Foreground="#888"/>
+                                        <TextBlock x:Name="IpText" Text="--" FontSize="13" Foreground="#333"/>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                            
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border Background="#F8F9FA" CornerRadius="10" Padding="12" Margin="0,0,5,15">
+                                    <StackPanel>
+                                        <TextBlock Text="信号强度" FontSize="11" Foreground="#888"/>
+                                        <TextBlock x:Name="SignalText" Text="--" FontSize="13" Foreground="#333"/>
+                                    </StackPanel>
+                                </Border>
+                                <Border Grid.Column="1" Background="#F8F9FA" CornerRadius="10" Padding="12" Margin="5,0,0,15">
+                                    <StackPanel>
+                                        <TextBlock Text="认证方式" FontSize="11" Foreground="#888"/>
+                                        <TextBlock x:Name="AuthText" Text="--" FontSize="13" Foreground="#333"/>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                            
+                            <Button Content="🔄 刷新" Click="RefreshButton_Click" Background="#0078D4"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+
+                <!-- 有线网络 Tab -->
+                <TabItem Header="🔌 有线">
+                    <ScrollViewer Margin="15">
+                        <StackPanel>
+                            <TextBlock Text="有线网络" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15" Foreground="#333"/>
+                            
+                            <Border Background="#F8F9FA" CornerRadius="10" Padding="15" Margin="0,0,0,10">
+                                <StackPanel>
+                                    <TextBlock Text="网卡名称" FontSize="11" Foreground="#888"/>
+                                    <TextBlock x:Name="EthernetNameText" Text="--" FontSize="13" Foreground="#333" TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Border>
+                            
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border Background="#F8F9FA" CornerRadius="10" Padding="12" Margin="0,0,5,10">
+                                    <StackPanel>
+                                        <TextBlock Text="MAC地址" FontSize="11" Foreground="#888"/>
+                                        <TextBlock x:Name="EthernetMacText" Text="--" FontSize="13" Foreground="#333"/>
+                                    </StackPanel>
+                                </Border>
+                                <Border Grid.Column="1" Background="#F8F9FA" CornerRadius="10" Padding="12" Margin="5,0,0,10">
+                                    <StackPanel>
+                                        <TextBlock Text="IP地址" FontSize="11" Foreground="#888"/>
+                                        <TextBlock x:Name="EthernetIpText" Text="--" FontSize="13" Foreground="#333"/>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                            
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border Background="#F8F9FA" CornerRadius="10" Padding="12" Margin="0,0,5,15">
+                                    <StackPanel>
+                                        <TextBlock Text="子网掩码" FontSize="11" Foreground="#888"/>
+                                        <TextBlock x:Name="EthernetMaskText" Text="--" FontSize="13" Foreground="#333"/>
+                                    </StackPanel>
+                                </Border>
+                                <Border Grid.Column="1" Background="#F8F9FA" CornerRadius="10" Padding="12" Margin="5,0,0,15">
+                                    <StackPanel>
+                                        <TextBlock Text="网关" FontSize="11" Foreground="#888"/>
+                                        <TextBlock x:Name="EthernetGatewayText" Text="--" FontSize="13" Foreground="#333"/>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                            
+                            <Button Content="🔄 刷新" Click="RefreshButton_Click" Background="#0078D4"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+
+                <!-- 测速 Tab -->
+                <TabItem Header="⚡ 测速">
+                    <StackPanel Margin="20" VerticalAlignment="Center">
+                        <TextBlock Text="网络测速" FontSize="20" FontWeight="Bold" 
+                                   HorizontalAlignment="Center" Margin="0,0,0,10" Foreground="#333"/>
+                        
+                        <TextBlock Text="点击按钮跳转到测速网站" FontSize="13" Foreground="#888" 
+                                   HorizontalAlignment="Center" Margin="0,0,0,25"/>
+                        
+                        <Button Content="🌐 打开中科大测速网站" Click="OpenSpeedTest_Click"
+                                Height="50" FontSize="15" Background="#0078D4" Margin="0,0,0,20"/>
+                        
+                        <TextBlock Text="其他测速网站" FontSize="12" Foreground="#888" 
+                                   HorizontalAlignment="Center" Margin="0,0,0,12"/>
+                        
+                        <WrapPanel HorizontalAlignment="Center">
+                            <Button Content="测速网" Click="OpenUrl_Click" Tag="https://www.speedtest.cn/"
+                                    Padding="20,10" Margin="5" Background="#28A745" FontSize="13"/>
+                            <Button Content="360测速" Click="OpenUrl_Click" Tag="https://ce.360.cn/"
+                                    Padding="20,10" Margin="5" Background="#E74C3C" FontSize="13"/>
+                            <Button Content="花瓣测速" Click="OpenUrl_Click" Tag="https://www.huabol.com/"
+                                    Padding="20,10" Margin="5" Background="#9B59B6" FontSize="13"/>
+                        </WrapPanel>
+                        
+                        <TextBlock x:Name="SpeedStatusText" Text="" FontSize="12" Foreground="#888" 
+                                   HorizontalAlignment="Center" Margin="0,25,0,0"/>
+                    </StackPanel>
+                </TabItem>
+
+                <!-- Ping Tab -->
+                <TabItem Header="📡 Ping">
+                    <StackPanel Margin="15">
+                        <TextBlock Text="Ping 测试" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15" Foreground="#333"/>
+                        
+                        <Grid Margin="0,0,0,15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="PingHostTextBox" Text="8.8.8.8"/>
+                            <Button Grid.Column="1" Content="Ping" x:Name="PingButton" Click="PingButton_Click" Margin="10,0,0,0" Background="#0078D4"/>
+                        </Grid>
+
+                        <Border Background="#F8F9FA" CornerRadius="10" Padding="12" MinHeight="150">
+                            <TextBlock x:Name="PingResultText" Text="" FontSize="13" TextWrapping="Wrap" Foreground="#333"/>
+                        </Border>
+                    </StackPanel>
+                </TabItem>
+
+                <!-- DNS Tab -->
+                <TabItem Header="🌐 DNS">
+                    <StackPanel Margin="15">
+                        <TextBlock Text="DNS 查询" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15" Foreground="#333"/>
+                        
+                        <Grid Margin="0,0,0,15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="DnsTextBox" Text="baidu.com"/>
+                            <Button Grid.Column="1" Content="查询" x:Name="DnsButton" Click="DnsButton_Click" Margin="10,0,0,0" Background="#0078D4"/>
+                        </Grid>
+
+                        <Border Background="#F8F9FA" CornerRadius="10" Padding="12" MinHeight="150">
+                            <TextBlock x:Name="DnsResultText" Text="" FontSize="13" TextWrapping="Wrap" Foreground="#333"/>
+                        </Border>
+                    </StackPanel>
+                </TabItem>
+
+                <!-- 端口扫描 Tab -->
+                <TabItem Header="🔎 端口">
+                    <StackPanel Margin="15">
+                        <TextBlock Text="端口扫描" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15" Foreground="#333"/>
+                        
+                        <TextBlock Text="目标地址" FontSize="12" Foreground="#888" Margin="0,0,0,5"/>
+                        <TextBox x:Name="ScanHostTextBox" Text="127.0.0.1" Margin="0,0,0,12"/>
+
+                        <TextBlock Text="端口 (如: 80,443,3389)" FontSize="12" Foreground="#888" Margin="0,0,0,5"/>
+                        <Grid Margin="0,0,0,15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="ScanPortTextBox" Text="80,443,3389,8080"/>
+                            <Button Grid.Column="1" x:Name="ScanButton" Content="扫描" Click="ScanButton_Click" Margin="10,0,0,0" Background="#E74C3C"/>
+                        </Grid>
+
+                        <Border Background="#F8F9FA" CornerRadius="10" Padding="12" MinHeight="120">
+                            <ScrollViewer Height="120">
+                                <TextBlock x:Name="ScanResultText" Text="" FontSize="13" TextWrapping="Wrap" Foreground="#333"/>
+                            </ScrollViewer>
+                        </Border>
+                    </StackPanel>
+                </TabItem>
+
+                <!-- 设备发现 Tab -->
+                <TabItem Header="📱 设备">
+                    <StackPanel Margin="15">
+                        <Grid Margin="0,0,0,15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="局域网设备发现" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" Foreground="#333"/>
+                            <Button Grid.Column="1" x:Name="DiscoveryButton" Content="🔍 扫描" Click="DiscoveryButton_Click" Background="#9B59B6"/>
+                        </Grid>
+
+                        <TextBlock x:Name="DiscoveryStatusText" Text="点击扫描发现局域网设备" FontSize="12" Foreground="#888" Margin="0,0,0,10"/>
+                        
+                        <Border Background="#F8F9FA" CornerRadius="10" Padding="12">
+                            <ScrollViewer Height="200">
+                                <TextBlock x:Name="DiscoveryResultText" Text="" FontSize="13" TextWrapping="Wrap" Foreground="#333"/>
+                            </ScrollViewer>
+                        </Border>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </Border>
+    </Grid>
+</Window>

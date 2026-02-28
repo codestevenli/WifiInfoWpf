@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11520.95 d18.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WifiInfoWpf", "WifiInfoWpf.csproj", "{619C0719-201B-7F76-F313-283C5D086CBF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{619C0719-201B-7F76-F313-283C5D086CBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{619C0719-201B-7F76-F313-283C5D086CBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{619C0719-201B-7F76-F313-283C5D086CBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{619C0719-201B-7F76-F313-283C5D086CBF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CE6CEDAE-72C0-4A38-A1E7-4878E2DDFFC3}
+	EndGlobalSection
+EndGlobal
